@@ -1,0 +1,16 @@
+body {
+    background-color: 	#add8e6;
+    font-family: system-ui, sans-serif; 
+  }
+  
+  .container {
+    display: grid;
+    grid-template-columns: repeat(10, 50px);
+    grid-template-rows: repeat(10, 50px);
+  }
+
+  .cell {
+    background-color: #fff; 
+    border: 1px solid black;
+  }
+  
