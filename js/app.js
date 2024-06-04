@@ -9,13 +9,21 @@ for (let i = 0; i < 100; i++) {
 
 let snake = [0];
 
+const moveSnake = () => {
+  snake = snake.map((snakeCell) => snakeCell + 1);
+};
+
 const render = () => {
-  const element = (document.querySelector("#cell1").style.backgroundColor =
-    "red");
+  moveSnake();
+  document.querySelectorAll(".snake").forEach((cell) => {
+    cell.className = "cell";
+  });
+  document.querySelector(`#cell${snake[0]}`).className = "snake";
 };
 
 const initialize = () => {
   render();
 };
-
 initialize();
+
+setInterval(render, 1000);
