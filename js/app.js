@@ -7,10 +7,24 @@ for (let i = 0; i < 100; i++) {
   container.appendChild(element);
 }
 
-let snake = [0];
+let snake = [5];
+let direction = "left";
 
 const moveSnake = () => {
-  snake = snake.map((snakeCell) => snakeCell + 1);
+  switch (direction) {
+    case "rigth":
+      snake = snake.map((snakeCell) => snakeCell + 1);
+      break;
+    case "left":
+      snake = snake.map((snakeCell) => snakeCell - 1);
+      break;
+    case "up":
+      snake = snake.map((snakeCell) => snakeCell - 10);
+      break;
+    case "down":
+      snake = snake.map((snakeCell) => snakeCell + 10);
+      break;
+  }
 };
 
 const render = () => {
