@@ -17,4 +17,8 @@ body {
   .snake {
     background-color: red; 
   }
+
+  #reset-button {
+color: green
+  }
   
