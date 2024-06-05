@@ -1,24 +1,30 @@
 body {
-    background-color: 	#add8e6;
-    font-family: system-ui, sans-serif; 
-  }
-  
-  .container {
-    display: grid;
-    grid-template-columns: repeat(10, 50px);
-    grid-template-rows: repeat(10, 50px);
-  }
+  background-color: #add8e6;
+  font-family: system-ui, sans-serif;
+}
 
-  .cell {
-    background-color: #fff; 
-    border: 1px solid black;
-  }
+.container {
+  display: grid;
+  grid-template-columns: repeat(10, 50px);
+  grid-template-rows: repeat(10, 50px);
+}
 
-  .snake {
-    background-color: red; 
-  }
+.cell {
+  background-color: #fff;
+  border: 1px solid black;
+}
 
-  #reset-button {
-color: green
-  }
-  
+.snake {
+  background-color: red;
+}
+
+#reset-button {
+  color: green;
+}
+.snakeTail {
+  background-color: blue;
+}
+
+.food {
+  background-color: green;
+}

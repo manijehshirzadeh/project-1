@@ -8,42 +8,51 @@ for (let i = 1; i <= 100; i++) {
   container.appendChild(element);
 }
 
-let snake;
+let snakeTail;
+let snakeHead;
+let food;
 let direction;
 let gameOver;
 let refreshIntervalId;
 
-const checkCollision = () => {
-  if (snake[0] % 10 === 0) {
+const hitWall = () => {
+  if (snakeHead % 10 === 0) {
     gameOver = true;
   }
 
-  if (snake[0] % 10 === 1) {
+  if (snakeHead % 10 === 1) {
     gameOver = true;
   }
 
-  if (snake[0] < 10) {
+  if (snakeHead < 10) {
     gameOver = true;
   }
 
-  if (snake[0] > 90) {
+  if (snakeHead > 90) {
     gameOver = true;
   }
 };
 
 const moveSnake = () => {
+  if (snakeHead !== food) {
+    snakeTail.shift();
+  } else {
+    food = 35;
+  }
+
+  snakeTail.push(snakeHead);
   switch (direction) {
     case "right":
-      snake = snake.map((snakeCell) => snakeCell + 1);
+      snakeHead = snakeHead + 1;
       break;
     case "left":
-      snake = snake.map((snakeCell) => snakeCell - 1);
+      snakeHead = snakeHead - 1;
       break;
     case "up":
-      snake = snake.map((snakeCell) => snakeCell - 10);
+      snakeHead = snakeHead - 10;
       break;
     case "down":
-      snake = snake.map((snakeCell) => snakeCell + 10);
+      snakeHead = snakeHead + 10;
       break;
   }
 };
@@ -67,14 +76,18 @@ function handleKey(event) {
 }
 
 const render = () => {
+  document.querySelector(`#cell${snakeHead}`).className = "snake";
+  document.querySelector(`#cell${food}`).className = "food";
   moveSnake();
   document.querySelectorAll(".snake").forEach((cell) => {
     cell.className = "cell";
   });
-  snake.forEach((piece) => {
-    document.querySelector(`#cell${piece}`).className = "snake";
+
+  snakeTail.forEach((tail) => {
+    document.querySelector(`#cell${tail}`).className = "snake";
   });
-  checkCollision();
+
+  hitWall();
   if (gameOver) {
     messageEl.innerHTML = "GAME OVER";
     clearInterval(refreshIntervalId);
@@ -82,8 +95,10 @@ const render = () => {
 };
 
 const initialize = () => {
-  snake = [35];
-  direction = "down";
+  snakeTail = [12, 13];
+  snakeHead = 14;
+  food = 16;
+  direction = "right";
   gameOver = false;
   render();
   refreshIntervalId = setInterval(render, 1000);
