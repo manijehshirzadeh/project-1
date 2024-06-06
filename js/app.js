@@ -15,7 +15,7 @@ let direction;
 let gameOver;
 let refreshIntervalId;
 
-const hitWall = () => {
+const checkForGameOver = () => {
   if (snakeHead % 10 === 0) {
     gameOver = true;
   }
@@ -29,6 +29,9 @@ const hitWall = () => {
   }
 
   if (snakeHead > 90) {
+    gameOver = true;
+  }
+  if (snakeTail.some((tail) => snakeHead === tail)) {
     gameOver = true;
   }
 };
@@ -92,7 +95,7 @@ const render = () => {
     document.querySelector(`#cell${tail}`).className = "snake";
   });
 
-  hitWall();
+  checkForGameOver();
   if (gameOver) {
     messageEl.innerHTML = "GAME OVER";
     clearInterval(refreshIntervalId);
