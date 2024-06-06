@@ -16,19 +16,19 @@ let gameOver;
 let refreshIntervalId;
 
 const checkForGameOver = () => {
-  if (snakeHead % 10 === 0) {
+  if (snakeHead % 10 === 0 && direction === "right") {
     gameOver = true;
   }
 
-  if (snakeHead % 10 === 1) {
+  if (snakeHead % 10 === 1 && direction === "left") {
     gameOver = true;
   }
 
-  if (snakeHead < 10) {
+  if (snakeHead < 10 && direction === "up") {
     gameOver = true;
   }
 
-  if (snakeHead > 90) {
+  if (snakeHead > 90 && direction === "down") {
     gameOver = true;
   }
   if (snakeTail.some((tail) => snakeHead === tail)) {
@@ -43,7 +43,7 @@ const moveSnake = () => {
     food = randomFood();
   }
 
-  snakeTail.push(snakeHead);
+  if (snakeTail.length !== 0) snakeTail.push(snakeHead);
   switch (direction) {
     case "right":
       snakeHead = snakeHead + 1;
@@ -68,43 +68,55 @@ function randomFood() {
 function handleKey(event) {
   switch (event.key) {
     case "ArrowRight":
-      direction = "right";
+      if (direction !== "left") {
+        direction = "right";
+      }
       break;
     case "ArrowLeft":
-      direction = "left";
+      if (direction !== "right") {
+        direction = "left";
+      }
       break;
     case "ArrowUp":
-      direction = "up";
+      if (direction !== "down") {
+        direction = "up";
+      }
       break;
     case "ArrowDown":
-      direction = "down";
+      if (direction !== "up") {
+        direction = "down";
+      }
       break;
   }
-  render();
 }
 
 const render = () => {
-  document.querySelector(`#cell${snakeHead}`).className = "snake";
-  document.querySelector(`#cell${food}`).className = "food";
+  console.log({ snakeTail, snakeHead, direction, gameOver });
   moveSnake();
-  document.querySelectorAll(".snake").forEach((cell) => {
-    cell.className = "cell";
-  });
 
-  snakeTail.forEach((tail) => {
-    document.querySelector(`#cell${tail}`).className = "snake";
-  });
-
-  checkForGameOver();
   if (gameOver) {
     messageEl.innerHTML = "GAME OVER";
+    document.querySelector("body").className = "gameover";
     clearInterval(refreshIntervalId);
+    return;
+  } else {
+    checkForGameOver();
+    document.querySelectorAll("div[id^=cell]").forEach((cell) => {
+      cell.className = "cell";
+    });
+
+    document.querySelector(`#cell${food}`).className = "food";
+
+    snakeTail.forEach((tail) => {
+      document.querySelector(`#cell${tail}`).className = "snakeTail";
+    });
+    document.querySelector(`#cell${snakeHead}`).className = "snakeHead";
   }
 };
 
 const initialize = () => {
-  snakeTail = [12, 13];
-  snakeHead = 14;
+  snakeTail = [11, 12];
+  snakeHead = 13;
   food = randomFood();
   direction = "right";
   gameOver = false;
@@ -114,4 +126,9 @@ const initialize = () => {
 initialize();
 
 const reset = document.querySelector("#reset-button");
-reset.addEventListener("click", initialize);
+reset.addEventListener("click", () => {
+  clearInterval(refreshIntervalId);
+  document.querySelector("body").className = "";
+  messageEl.innerHTML = "";
+  initialize();
+});

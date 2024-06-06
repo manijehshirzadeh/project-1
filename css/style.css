@@ -1,5 +1,5 @@
 body {
-  background-color: #add8e6;
+  background-color: #b4e7ce;
   font-family: system-ui, sans-serif;
 }
 
@@ -14,17 +14,21 @@ body {
   border: 1px solid black;
 }
 
-.snake {
-  background-color: red;
+.snakeHead {
+  background-color: #b0228c;
 }
 
 #reset-button {
   color: green;
 }
 .snakeTail {
-  background-color: blue;
+  background-color: #e56b70;
 }
 
 .food {
-  background-color: green;
+  background-color: #59a96a;
+}
+
+.gameover {
+  background-color: #ff1b1c;
 }
