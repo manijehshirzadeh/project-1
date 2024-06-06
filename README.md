@@ -2,6 +2,7 @@
 This game is the good old snake game that probably everyone played at some point in the time.
 
 ![The screenshot of my snake game](screenshot.png "a title")
+![The screenshot of my snake game in mobile](mobile-screenshot.png "a title")
 
 
 # Instructions:

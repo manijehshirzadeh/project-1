@@ -1,6 +1,8 @@
 body {
-  background-color: #b4e7ce;
+  background-color: #b2ffff;
   font-family: system-ui, sans-serif;
+  display: grid;
+  place-items: center;
 }
 
 .container {
@@ -10,25 +12,57 @@ body {
 }
 
 .cell {
-  background-color: #fff;
-  border: 1px solid black;
+  border-radius: 8px;
+  background-color: #4fffb0;
+  border: 1px solid#00308F;
 }
 
+h1 {
+  color: #00563b;
+  margin-bottom: 0;
+  margin-top: 0;
+}
 .snakeHead {
-  background-color: #b0228c;
+  background-color: #ffff00;
+
+  border-radius: 8px;
+  border: 1px solid#00308F;
 }
 
-#reset-button {
-  color: green;
-}
 .snakeTail {
-  background-color: #e56b70;
+  background-color: #fea310;
+  border-radius: 8px;
+  border: 1px solid#00308F;
 }
 
 .food {
-  background-color: #59a96a;
+  background-color: #008000;
+  border-radius: 8px;
+  border: 1px solid#00308F;
 }
 
-.gameover {
-  background-color: #ff1b1c;
+.button {
+  font-size: 18px;
+  background-color: #ff033e;
+  border-radius: 8px;
+  border-color: #ff033e;
+  height: 40px;
+  width: 100px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#message {
+  color: #c80815;
+}
+
+#paragraph {
+  border: 2px solid #00308f;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #ecf0f1;
+  color: #2c3e50;
+  max-width: 800px;
+  text-align: left;
+  margin-top: 0;
 }

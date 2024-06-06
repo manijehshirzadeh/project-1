@@ -92,7 +92,6 @@ function handleKey(event) {
 
 const render = () => {
   console.log({ snakeTail, snakeHead, direction, gameOver });
-  moveSnake();
 
   if (gameOver) {
     messageEl.innerHTML = "GAME OVER";
@@ -112,6 +111,7 @@ const render = () => {
     });
     document.querySelector(`#cell${snakeHead}`).className = "snakeHead";
   }
+  moveSnake();
 };
 
 const initialize = () => {
