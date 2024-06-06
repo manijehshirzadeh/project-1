@@ -37,7 +37,7 @@ const moveSnake = () => {
   if (snakeHead !== food) {
     snakeTail.shift();
   } else {
-    food = 35;
+    food = randomFood();
   }
 
   snakeTail.push(snakeHead);
@@ -58,6 +58,10 @@ const moveSnake = () => {
 };
 window.addEventListener("keydown", handleKey);
 
+function randomFood() {
+  return Math.floor(Math.random() * 100);
+}
+
 function handleKey(event) {
   switch (event.key) {
     case "ArrowRight":
@@ -73,6 +77,7 @@ function handleKey(event) {
       direction = "down";
       break;
   }
+  render();
 }
 
 const render = () => {
@@ -97,7 +102,7 @@ const render = () => {
 const initialize = () => {
   snakeTail = [12, 13];
   snakeHead = 14;
-  food = 16;
+  food = randomFood();
   direction = "right";
   gameOver = false;
   render();
