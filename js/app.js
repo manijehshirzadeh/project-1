@@ -1,13 +1,9 @@
+// selecting the elements in the DOM
 const container = document.querySelector(".container");
 const messageEl = document.querySelector("#message");
+const reset = document.querySelector("button");
 
-for (let i = 1; i <= 100; i++) {
-  let element = document.createElement("div");
-  element.className = "cell";
-  element.id = "cell" + i;
-  container.appendChild(element);
-}
-
+// decalring game state variables
 let snakeTail;
 let snakeHead;
 let food;
@@ -15,27 +11,36 @@ let direction;
 let gameOver;
 let refreshIntervalId;
 
+// Create the board by creating elements and appending them into the DOM
+for (let i = 1; i <= 100; i++) {
+  let element = document.createElement("div");
+  element.className = "cell";
+  element.id = "cell" + i;
+  container.appendChild(element);
+}
+
+// Check for the game over conditions
 const checkForGameOver = () => {
-  if (snakeHead % 10 === 0 && direction === "right") {
-    gameOver = true;
-  }
-
-  if (snakeHead % 10 === 1 && direction === "left") {
-    gameOver = true;
-  }
-
-  if (snakeHead < 10 && direction === "up") {
-    gameOver = true;
-  }
-
-  if (snakeHead > 90 && direction === "down") {
-    gameOver = true;
-  }
-  if (snakeTail.some((tail) => snakeHead === tail)) {
-    gameOver = true;
+  switch (true) {
+    case snakeHead % 10 === 0 && direction === "right":
+      gameOver = true;
+      break;
+    case snakeHead % 10 === 1 && direction === "left":
+      gameOver = true;
+      break;
+    case snakeHead < 10 && direction === "up":
+      gameOver = true;
+      break;
+    case snakeHead > 90 && direction === "down":
+      gameOver = true;
+      break;
+    case snakeTail.some((tail) => snakeHead === tail):
+      gameOver = true;
+      break;
   }
 };
 
+// Implement the Snake's moving logic
 const moveSnake = () => {
   if (snakeHead !== food) {
     snakeTail.shift();
@@ -59,12 +64,13 @@ const moveSnake = () => {
       break;
   }
 };
-window.addEventListener("keydown", handleKey);
 
+// To create a random food, so it will be put/draw into the board
 function randomFood() {
   return Math.floor(Math.random() * 100);
 }
 
+// Event handler for pressing arrow keys
 function handleKey(event) {
   switch (event.key) {
     case "ArrowRight":
@@ -90,9 +96,8 @@ function handleKey(event) {
   }
 }
 
+// The function for drawing all the stuff into DOM, checking game over, and moving the snake
 const render = () => {
-  console.log({ snakeTail, snakeHead, direction, gameOver });
-
   if (gameOver) {
     messageEl.innerHTML = "GAME OVER";
     document.querySelector("body").className = "gameover";
@@ -114,18 +119,22 @@ const render = () => {
   moveSnake();
 };
 
+// Setting up the game so the user can start playing
 const initialize = () => {
   snakeTail = [11, 12];
   snakeHead = 13;
   food = randomFood();
   direction = "right";
   gameOver = false;
-  render();
   refreshIntervalId = setInterval(render, 1000);
+  render();
 };
 initialize();
 
-const reset = document.querySelector("#reset-button");
+// Adding event listener to arrow keys
+window.addEventListener("keydown", handleKey);
+
+// adding event listener to reset button
 reset.addEventListener("click", () => {
   clearInterval(refreshIntervalId);
   document.querySelector("body").className = "";

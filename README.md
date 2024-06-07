@@ -4,7 +4,6 @@ This game is the good old snake game that probably everyone played at some point
 ![The screenshot of my snake game](screenshot.png "a title")
 ![The screenshot of my snake game in mobile](mobile-screenshot.png "a title")
 
-
 # Instructions:
 In this game, there is:
 - A board of 10 by 10 
@@ -13,14 +12,17 @@ In this game, there is:
 - The snake **Head** should not cross the borders (walls), otherwise the game is over
 - The snake **Head** should not hit its body (tails), otherwise the game is over
 - A snake that can move around
-- A snake that can move around
-### To play this game, please this link:
+### To play this game, please click this link:
 https://manijehshirzadeh.github.io/snake-game/
 
 # Technologies:
 - HTML
 - CSS
 - JavaScript
+
+# External resources:
+- Choosing color from a color pallet : https://coolors.co/defffc-e2e4f6-e7c8dd-dbafc1-86626e
+- For using different JavaScript methods in this project: https://developer.mozilla.org/en-US/
 
 # Next Steps:
 - Adding transition to the move of the snake
